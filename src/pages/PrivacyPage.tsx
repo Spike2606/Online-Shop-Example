@@ -1,11 +1,12 @@
 import { Link } from "react-router-dom";
+import { SectionLabel } from "../components/SectionLabel";
 
 export function PrivacyPage() {
   return (
     <section className="section page-section legal-page">
-      <p className="eyebrow">Dokumenty</p>
+      <SectionLabel>Dokumenty</SectionLabel>
       <h1>Polityka prywatności</h1>
-      <p>
+      <p className="legal-page__intro">
         To przykładowa treść polityki prywatności dla sklepu demonstracyjnego.
         Przed publikacją produkcyjną należy dopasować ją do realnego procesu
         sprzedaży oraz skonsultować z prawnikiem.
@@ -47,7 +48,7 @@ export function PrivacyPage() {
         </p>
       </article>
 
-      <Link className="button secondary" to="/">
+      <Link className="button ghost" to="/">
         Wróć do sklepu
       </Link>
     </section>

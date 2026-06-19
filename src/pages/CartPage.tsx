@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { SectionLabel } from "../components/SectionLabel";
 import { shippingCost } from "../data/products";
 import { useCart } from "../hooks/useCart";
 import { formatPrice } from "../utils/formatPrice";
@@ -8,12 +9,13 @@ export function CartPage() {
 
   if (items.length === 0) {
     return (
-      <section className="section page-section empty-page">
-        <p className="eyebrow">Koszyk</p>
+      <section className="section page-section page-section--dark empty-page">
+        <SectionLabel dark>Koszyk</SectionLabel>
         <h1>Twój koszyk jest pusty.</h1>
         <p>Dodaj case z katalogu, a pojawi się tutaj jako osobne zamówienie.</p>
         <Link className="button primary" to="/#produkty">
           Wróć do produktów
+          <span aria-hidden="true">→</span>
         </Link>
       </section>
     );
@@ -21,8 +23,8 @@ export function CartPage() {
 
   return (
     <section className="section page-section cart-page">
-      <div>
-        <p className="eyebrow">Koszyk</p>
+      <div className="cart-page__header">
+        <SectionLabel>Koszyk</SectionLabel>
         <h1>Twoje zamówienie</h1>
         <p>Sprawdź produkty, zmień ilości albo usuń pozycje przed wysłaniem zapytania.</p>
       </div>
@@ -32,7 +34,7 @@ export function CartPage() {
           {items.map(({ product, quantity }) => (
             <article className="cart-row" key={product.id}>
               <img src={product.image} alt={product.name} />
-              <div>
+              <div className="cart-row__info">
                 <strong>{product.name}</strong>
                 <span>{product.model}</span>
                 <button onClick={() => removeItem(product.id)} type="button">
@@ -50,7 +52,9 @@ export function CartPage() {
                   value={quantity}
                 />
               </label>
-              <strong>{formatPrice(product.price * quantity)}</strong>
+              <strong className="cart-row__price">
+                {formatPrice(product.price * quantity)}
+              </strong>
             </article>
           ))}
         </div>
